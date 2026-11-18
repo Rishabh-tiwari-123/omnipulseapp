@@ -4,7 +4,7 @@
  * zero-downtime graceful fallback to local simulation when offline.
  */
 
-const API_BASE_URL = (import.meta as any).env?.VITE_API_BASE_URL || 'http://localhost:5000/api/v1';
+const API_BASE_URL = (import.meta as any).env?.VITE_API_BASE_URL || 'https://omnipulseapp.onrender.com/api/v1';
 
 export interface WorkoutVerifyPayload {
   userId?: string;

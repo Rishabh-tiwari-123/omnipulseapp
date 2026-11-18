@@ -33,7 +33,10 @@ server/.env.*
 *.sln
 *.sw?
 
-# Capacitor native folders
-android/
+# Capacitor native build artifacts (project sources in android/ are committed)
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
 ios/
 
