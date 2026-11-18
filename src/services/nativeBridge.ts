@@ -257,9 +257,19 @@ class NativeBridgeService {
     try {
       const adMobPlugin = (window as any).Capacitor?.Plugins?.AdMob;
       if (adMobPlugin) {
+        // Initialize AdMob if available
+        if (typeof adMobPlugin.initialize === 'function') {
+          await adMobPlugin.initialize({
+            requestTrackingAuthorization: true,
+            testingDevices: [],
+            initializeForTesting: true,
+          }).catch(() => {});
+        }
+
         // Prepare Rewarded Video with SSV (Server-Side Verification) options
         await adMobPlugin.prepareRewardVideoAd({
-          adId: 'ca-app-pub-3940256099942544/5224354917', // Test Rewarded Ad Unit ID
+          adId: 'ca-app-pub-6842617720697423/9094545249', // Production Rewarded Ad Unit ID
+          isTesting: true, // Safe testing mode enabled during pre-Play-Store testing
           ssv: {
             userId: userId || 'omnipulse_user_default',
             customData: customData || JSON.stringify({ app: 'OmniPulse', version: '5.0.0' }),
